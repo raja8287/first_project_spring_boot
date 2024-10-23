@@ -1,5 +1,6 @@
 package loginpageapi.rea_red_sb.entity;
 
+import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,23 +9,28 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "newCreateuser")
+
 public class userEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public String username;
-    public String Email;
+    public String email;
     public String password;
+    public LocalDateTime createdDate;
 
-    public userEntity() {
-    }
-
-    public userEntity(Long id, String username, String email, String password) {
+    public userEntity(Long id, String username, String email, String password, LocalDateTime createdDate) {
         this.id = id;
         this.username = username;
-        Email = email;
+        this.email = email;
         this.password = password;
+        this.createdDate = LocalDateTime.now();
+    }
+
+    public userEntity() {
+        this.createdDate = LocalDateTime.now(); // Set current date and time
+
     }
 
     public Long getId() {
@@ -44,11 +50,11 @@ public class userEntity {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getPassword() {
